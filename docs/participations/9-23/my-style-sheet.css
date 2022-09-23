@@ -1,0 +1,10 @@
+li {
+    background-color: brown;
+}
+#main-header:hover {
+    background-color: crimson;
+}
+#main-header:hover::after {
+    content: BOO;
+    background-color: crimson;
+}
