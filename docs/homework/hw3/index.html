@@ -1,11 +1,15 @@
+<!--
+    Joseph Holdnak
+    CPSC 332
+    HW3
+    10/5/2022
+-->
 <!DOCTYPE html>
 <head>
     <title>Homework 3</title>
     <meta charset="UTF-8">
+    <link rel="icon" href="favicon.png">
     <style>
-        #name {
-            font-family: "Comic Sans MS";
-        }
         * {
             font-family: "Helvetica";
         }
@@ -18,8 +22,11 @@
         th {
             background-color: aqua;
         }
-        td {
+        tr {
             background-color: #89CFF0;
+        }
+        tr:nth-child(even) {
+            background-color: #B2FFFF;
         }
         .navigation-bar {
             width: 100%;
@@ -62,9 +69,9 @@
     <div id="grid-container">
         <div style="background: #088F8F;">
             <img src="https://c.tenor.com/-OpJG9GeK3EAAAAC/kanye-west-stare.gif">
-            <h1 id="name">Kanye West</h1>
+            <h1 style="font-family: 'Comic Sans MS'">Kanye West</h1>
             <hr style="border-top: 3px solid white;">
-            <p id="about">
+            <p style="font-family: 'Segoe Script'; font-size: 6pt">
                 I am a rising rapper who majored in Music Theory from Ye University.
                 My popularity and fame come from music, tweets, and album covers
                 that look like they were made in Microsoft Paint.
