@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<head>
+    <title>Homework 3</title>
+    <meta charset="UTF-8">
+    <style>
+        #name {
+            font-family: "Comic Sans MS";
+        }
+        * {
+            font-family: "Helvetica";
+        }
+        table, tr, th, td {
+            border-collapse: collapse;
+            border: 1px solid;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        th {
+            background-color: aqua;
+        }
+        td {
+            background-color: #89CFF0;
+        }
+        .navigation-bar {
+            width: 100%;
+            height: 80px;
+            background-color: #7393B3;
+        }
+        .logo {
+            display: inline-block;
+            vertical-align: top;
+            width: 50px;
+            height: 70px;
+            margin-right: 20px;
+            margin-top: 15px;
+        }
+        .navigation-bar > a {
+            display: inline-block;
+            float: right;
+            vertical-align: top;
+            margin-right: 20px;
+            height: 80px;
+            line-height: 80px;
+        }
+        #grid-container {
+            display: grid;
+            grid-template-columns: 25% auto;
+        }
+        #grid-container > div {
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navigation-bar">
+        <img class="logo" src="https://purepng.com/public/uploads/large/kanye-west-vil.png" alt="Logo">
+        <a href="http://www.staggeringbeauty.com/" target="_blank">A Worm</a>
+        <a href="http://endless.horse/" target="_blank">A Horse</a>
+        <a href="https://cat-bounce.com/" target="_blank">A Cat</a>
+    </nav>
+    <div id="grid-container">
+        <div style="background: #088F8F;">
+            <img src="https://c.tenor.com/-OpJG9GeK3EAAAAC/kanye-west-stare.gif">
+            <h1 id="name">Kanye West</h1>
+            <hr style="border-top: 3px solid white;">
+            <p id="about">
+                I am a rising rapper who majored in Music Theory from Ye University.
+                My popularity and fame come from music, tweets, and album covers
+                that look like they were made in Microsoft Paint.
+            </p>
+            <hr style="border-top: 3px solid white;">
+            <p>
+                <a href="tel:248-434-5508">Call</a>
+                <br>
+                <a href="mailto://did-you-actually-think-this-was-a-real-email-address@gmail.com">E-mail</a>
+            </p>
+        </div>
+        <div style="background: #0096FF;">
+            <p>
+                <h2>Career Summary</h2>
+                <table>
+                    <tr>
+                        <th>Employer</th>
+                        <th>Location</th>
+                        <th>Position</th>
+                    </tr>
+                    <tr>
+                        <td>The Krusty Krab</td>
+                        <td>Bikini Bottom</td>
+                        <td>Cashier</td>
+                    </tr>
+                    <tr>
+                        <td>Chum Bucket</td>
+                        <td>Bikini Bottom</td>
+                        <td>Cook</td>
+                    </tr>
+                </table>
+            </p>
+            <p>
+                <h2>Education & Qualifications</h2>
+                <table>
+                    <tr>
+                        <th>University</th>
+                        <th>Location</th>
+                        <th>Degree</th>
+                    </tr>
+                    <tr>
+                        <td>Ye University</td>
+                        <td>My Imagination</td>
+                        <td>Music Theory</td>
+                    </tr>
+                </table>
+                <br>
+                <table>
+                    <tr>
+                        <th>Career</th>
+                        <th>Time</th>
+                    </tr>
+                    <tr>
+                        <td>Rapper</td>
+                        <td>Since I was a kid</td>
+                    </tr>
+                    <tr>
+                        <td>Singer</td>
+                        <td>Since I was a kid</td>
+                    </tr>
+                    <tr>
+                        <td>College Student</td>
+                        <td>Not really sure</td>
+                    </tr>
+                </table>
+            </p>
+            <p>
+                <h2>Interests & Hobbies</h2>
+                <ol style="display: inline-block">
+                    <li><a href="https://i.insider.com/1eb9b9140e75df49f5b7e900?width=400&format=jpeg" target="_blank">Rapping</a></li>
+                    <li>Spending money</li>
+                    <li>Posting tweets at 3am</li>
+                </ol>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
