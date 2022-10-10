@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<head>
+    <title>10/10 Participation</title>
+    <script>
+        window.onload = function() {
+            for (let i = 0; i < 10; i++) {
+            }
+            myArray.forEach(function (item, i) {
+                console.log(item + " " + i);
+            });
+            var myObject = {
+                name: "defaultName",
+                someNumber: 42,
+                anArray: [1, 2, 3, 4, 5, 6],
+                echo: function(value) {
+                    console.log(value);
+                },
+                get numberPlusOne() {
+                    return this.someNumber + 1;
+                },
+
+                set someNumberPlusAnother(num) {
+                    this.someNumber += num;
+                },
+            };
+            myObject.name = "Bob Smith";
+            console.log(myObject.name);
+            myObject.echo("Hello, World!");
+            console.log(myObject.numberPlusOne);
+            console.log(myObject.someNumberPlusAnother = 9000);
+            console.log(myObject.someNumber);
+
+            let dateTimeNow = new Date();
+            console.log(dateTimeNow);
+
+            var currentDate = {
+                dateTime: null,
+            }
+
+            document.getElementById("update-date").addEventListener("click", pizzaTime);
+
+            function pizzaTime() {
+                console.log("Is it Pizza Time???");
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>More JavaScript-- Yay?</h1>
+    <p>
+        <span id="date-text">
+            Click the button
+        </span>
+    </p>
+    <p>
+        <button id="update-date">
+            Click to see current date time!
+        </button>
+    </p>
+    <img src="https://www.sunnyskyz.com/uploads/2018/06/dz36d-dog-tries-to-buy-beer.jpg" alt="Dog">
+    <img src="https://c.tenor.com/-OpJG9GeK3EAAAAC/kanye-west-stare.gif" alt="Ye">
+    <a href="../../index.html">Back to the main index, you fool</a>
+</body>
+</html>
