@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+    <!-- async loads the page at the same time as the script -->
+    <!-- <script src="script.js" async></script> -->
+    <!-- defer loads the script at the same time BUT script is not processed until the page loads-->
+    <!-- <script src="script.js" defer></script> -->
+    <script>
+        window.onload = function () {
+
+
+            //document represents the entire DOM
+            var thisDocument = document.getElementById("container");
+            console.log(thisDocument.innerHTML);
+            //window object
+            console.log(window.innerWidth);
+            console.log(window.innerHeight);
+            console.log(navigator.platform);
+
+            //"selecting" DOM elements so we can access them with JS
+            //var thisDocument = document.getElementById("container");
+            var listItems = document.getElementsByTagName("li");
+            var unorderedList = document.getElementsByClassName("unordered-list");
+            var allDivs = document.querySelectorAll("body div");
+            var firstDiv = document.querySelector("body div");
+
+            //event handler
+            document.getElementByid("date-button-start").addEventListener("click", startClock);
+            document.getElementByid("date-button-stop").addEventListener("click", stopClock);
+
+            var clock = null;
+
+            function startClock() {
+                console.log("start clock clicked");
+                clock = setInterval(updateClock, 1000);
+            }
+            function stopClock() {
+                console.log("stop clock clicked");
+                clock = setInterval(updateClock, 1000);
+            }
+
+        }//end of onload function
+    </script>
+</head>
+
+<body>
+    <div id="container">
+        This is div content
+        <img src="https://c.tenor.com/-OpJG9GeK3EAAAAC/kanye-west-stare.gif" alt="Ye">
+    </div>
+    <div id="container">
+        This is another container
+        <img src="https://c.tenor.com/-OpJG9GeK3EAAAAC/kanye-west-stare.gif" alt="Ye">
+    </div>
+    <div>
+        <ul class="unordered-list">
+            <li>Item 1</li>
+            <li>Item 2</li>
+        </ul>
+    </div>
+    <p>
+    <ul class="unordered-list">
+        <li>Item 3</li>
+        <li>Item 4</li>
+    </ul>
+    </p>
+    <!-- #1 -->
+    <fieldset>
+        <legend>
+            <strong><em>JavaScript Clock</em></strong>
+        </legend>
+
+        <div>
+            <p>
+                <span id="date-span">
+                    Click for the current Date-Time
+                </span>
+            </p>
+            <!-- #3 -->
+            <p>
+                <button id="date-button-start">Start Clock</button>
+            </p>
+            <p>
+                <button id="date-button-stop">Stop Clock</button>
+            </p>
+        </div>
+    </fieldset>
+</body>
+
+</html>
