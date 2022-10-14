@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript in the Browser</title>
+    <style>
+        #container {
+            border: 2px dashed blue;
+            background-color: cornsilk;
+            margin: 15px;
+            padding: 15px;
+            height: 175px;
+        }
+
+        div {
+            text-align: center;
+        }
+    </style>
+    <!-- https://bitsofco.de/async-vs-defer/ -->
+    <!-- async loads the page at the same time as the script -->
+    <!-- <script src="script.js" async></script> -->
+    <!-- defer loads the script at the same time BUT script is not processed until the page loads-->
+    <!-- <script src="script.js" defer></script> -->
+    <script>
+        window.onload = function () {
+
+            //document represents the entire DOM
+            var thisDocument = document.getElementById("container");
+            console.log(thisDocument.innerHTML);
+            //window object
+            console.log(window.innerWidth);
+            console.log(window.innerHeight);
+            console.log(navigator.platform);
+
+            //"selecting" DOM elements so we can access them with JS
+            //var thisDocument = document.getElementById("container");
+            var listItems = document.getElementsByTagName("li");
+            var unorderedList = document.getElementsByClassName("unordered-list");
+            var allDivs = document.querySelectorAll("body div");
+            var firstDiv = document.querySelector("body div");
+
+            //event handler
+            document.getElementById("date-button-start")
+                .addEventListener("click", startClock);
+            document.getElementById("date-button-stop")
+                .addEventListener("click", stopClock);
+
+            var clock = null;
+
+            function startClock() {
+                console.log("start clock clicked");
+                clock = setInterval(updateClock, 1000);
+            }
+
+            function stopClock() {
+                console.log("stop clock clicked");
+                clearInterval(clock);
+            }
+
+            function updateClock() {
+                console.log("I'm a clock!");
+                let date = new Date();
+                document.getElementById("date-span").textContent = date = date;
+            }
+
+            //changing CSS with JavaScript
+            let mouseOver = document.getElementById("fieldset");
+            mouseOver.addEventListener("mouseover", () => {
+                let divs = document.getElementsByTagName("div");
+
+                for (const div of divs) {
+                    //add style (inline)
+                    div.style.setProperty("background-color", "yellow");
+                }
+                //insert rule into stylesheet
+                document.styleSheets[0].insertRule("li {background-color: purple;}");
+            });
+
+            document.getElementById("fieldset").addEventListener("mouseout", function(){
+                let divs = document.getElementsByTagName("div");
+
+                for (const div of divs) {
+                    //add style (inline)
+                    div.style.removeProperty("background-color");
+                }
+                //insert rule into stylesheet
+                document.styleSheets[0].deleteRule("li");
+
+                //1. add event handlers for buttons
+                document.getElementById("remove-div").addEventListener("click", removeDiv);
+                document.getElementById("add-div").addEventListener("click", addDiv);
+            });
+
+            function removeDiv(){
+                //only remove if it can be found
+                if (document.getElementById("temp-div") != null){
+                    document.getElementById("temp-div").remove();
+                }
+            };
+            function addDiv(){
+                //only add if div isn't already present
+                if (document.getElementById("temp-div") == null){
+                    let newDiv = document.createElement("div");
+                    newDiv.id = "temp-div";
+                    newDiv.style = "border: 2px solid red; padding: 10px; border-radius: 30px; margin: 15px;";
+                    document.getElementById("contanier").appendChild(newDiv);
+                }
+            };
+
+        }//end of onload function
+    </script>
+</head>
+
+<body>
+    <img src="https://c.tenor.com/-OpJG9GeK3EAAAAC/kanye-west-stare.gif" alt="Ye">
+    <div id="container">
+        This is div content
+        <div id="temp-div" style="border: 2px solid red; padding: 10px; border-radius: 30px; margin: 15px;">
+            <p style="background-color: bisque;">Hello, World! (Div)</p>
+        </div>
+    </div>
+    <button id="remove-div">Remove Div</button>
+    <button id="add-div">Add Div</button>
+    <!-- <div id="container">
+        This is another container
+    </div> -->
+    <div>
+        <ul class="unordered-list">
+            <li>Item 1</li>
+            <li>Item 2</li>
+        </ul>
+    </div>
+    <p>
+    <ul class="unordered-list">
+        <li>Item 3</li>
+        <li>Item 4</li>
+    </ul>
+    </p>
+    <!-- #1 -->
+    <fieldset id="fieldset">
+        <legend>
+            <strong><em>JavaScript Clock</em></strong>
+        </legend>
+
+        <div>
+            <p>
+                <span id="date-span">
+                    Click for the current Date-Time
+                </span>
+            </p>
+            <!-- #3 -->
+            <p>
+                <button id="date-button-start">Start Clock</button>
+            </p>
+            <p>
+                <button id="date-button-stop">Stop Clock</button>
+            </p>
+        </div>
+    </fieldset>
+    <a href="../../index.html">Back to the participation index</a>
+</body>
+
+</html>
