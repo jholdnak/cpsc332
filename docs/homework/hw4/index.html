@@ -1,47 +1,29 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>Homework 4</title>
     <meta charset="UTF-8">
-    <style>
-        .container {
-            border-radius: 1;
-            border-style: dashed;
-            border-radius: 5%;
-            padding: 5%;
-        }
-    </style>
-    <script>
-        window.onload = function(){
-
-        }
-    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Quiz App</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="script.ts"></script>
 </head>
 <body>
-    <img src="https://c.tenor.com/-OpJG9GeK3EAAAAC/kanye-west-stare.gif" alt="Ye">
-    <h1>Ye Quiz</h1>
     <div class="container">
-        Question
-        <br>
-        <input type="button" value="Incorrect Answer">
-        <input type="button" value="Correct Answer">
-        <br>
-        <span style="font-weight: bold;" align="center">00m 00s</span>
+        <div id="additional-info-container" class="hide"></div>
+        <div id="question-container" class="hide">
+            <div id="question">Question</div>
+            <div id="answer-buttons" class="btn-grid">
+                <button class="btn">Answer 1</button>
+                <button class="btn">Answer 2</button>
+                <button class="btn">Answer 3</button>
+                <button class="btn">Answer 4</button>
+            </div>
+        </div>
+        <div class="controls">
+            <button id="start-btn" class="start-btn btn">Start</button>
+            <button id="next-btn" class="next-btn btn hide">Next</button>
+        </div>
     </div>
-    <p>
-        <input type="button" value="Back" style="font-weight: bold;">
-        <input type="button" value="Next" style="font-weight: bold;">
-    </p>
-    <p>
-        <label for="shuffleCards">Shuffle cards:</label>
-        <input type="checkbox" id="shuffleCards" name="shuffleCards" checked>
-        <label for="timed">Timed session:</label>
-        <input type="checkbox" id="timed" name="timed">
-        <label for="removeFromDeck">Remove Correct from deck:</label>
-        <input type="checkbox" id="shuffleCards" name="shuffleCards">
-    </p>
-    <p>
-        <input type="submit" id="start" name="start" value="Start">
-    </p>
-    <p></p>
 </body>
 </html>

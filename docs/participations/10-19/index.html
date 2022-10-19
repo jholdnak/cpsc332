@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-image: url("https://c.tenor.com/-OpJG9GeK3EAAAAC/kanye-west-stare.gif")
+        }
+        canvas {
+            background: grey;
+            display: block;
+            margin: 0 auto;
+        }
+
+        #clear {
+            margin-top: 10px;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+    </style>
+    <!-- <script src="script.js"></script> -->
+    <script>
+        //'removing' parts of what is drawn
+        //https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation
+        var cutCircle = function (context, x, y, radius) {
+            context.globalCompositeOperation = 'destination-out'
+            context.arc(x, y, radius, 0, Math.PI * 2, true);
+            context.fill();
+        }
+
+        var colors = ["red", "green", "blue", "yellow", "orange", "purple", "grey"];
+
+        window.onload = function () {
+
+            //get canvas (drawing area)
+            var canvas = document.getElementById("myCanvas");
+            //get context (drawing surface)
+            var context = canvas.getContext("2d");
+
+            //prototype method
+            function Ball(radius, color, position) {
+                this.radius = radius;
+                this.color = color;
+                this.position = position;
+
+                var name;
+                // public methods have access to private properties
+                this.setName = function (name) {
+                    name = name;
+                };
+
+                this.getName = function () {
+                    return name;
+                };
+
+
+                Ball.prototype.draw = function () {
+                    console.log("draw method");
+                    // Shadow for the balls
+                    context.shadowBlur = 10;
+                    context.shadowOffsetX = 5;
+                    context.shadowOffsetY = 5;
+                    context.shadowColor = "black";
+
+                    //we want to keep our stroke outlines separate
+                    context.beginPath();
+                    //draw circle with our Ball object
+                    context.arc(this.position[0], this.position[1],
+                        this.radius, 0, Math.PI * 2);
+                    //set the circle color
+                    context.fillStyle = this.color;
+                    //draw the circle                   
+                    context.fill();
+
+                    context.shadowBlur = 0;
+                    context.shadowOffsetX = 0;
+                    context.shadowOffsetY = 0;
+
+                    context.strokeStyle = colors[Math.floor(Math.random() * colors.length)];
+                    context.lineWidth = 5;
+                    context.stroke();
+                    //close stroke path
+                    context.closePath();
+                    animFrameId = window.requestAnimationFrame(() => {
+                        ball2Coords[0] += xInc;
+                        if (ball2Coords[0] < 0 || ball2Coords[0] > canvas.width) {
+                            xInc *= -1;
+                        }
+
+                        ball2Coords += yInc;
+                        if (ball2Coords[1] < 0 || ball2Coords[1] > canvas.height) {
+                            yInc *= -1;
+                        }
+
+                        ball2.move(ball2Coords[0], ball2Coords[1]);
+                    });
+                };
+
+                Ball.prototype.clear = function () {
+                    cutCircle(context, this.position[0], this.position[1], this.radius + 10);
+                };
+
+                Ball.prototype.move = function (newX, newY) {
+                    context.save();
+                    context.beginPath();
+                    // context.clearRect(0, 0, canvas.width, canvas.height);
+                    this.clear();
+                    this.position[0] = newX;
+                    this.position[1] = newY;
+                    context.restore();
+                    this.draw();
+                };
+            };
+
+            var ball2Coords = [85, 55];
+            var xInc = 3, yInc = 3;
+
+            var ball2 = new Ball(25, "red")
+
+            canvas.addEventListener("click", createAtMouseClick);
+
+            var boxXStartCoord = 70;
+            var boxYStartCoord = 100;
+            var boxXEndCoord = 155;
+            var boxYEndCoord = 50;
+
+            function createAtMouseClick(event) {
+                //calculate x,y mouse coords relative to the canvas
+                var xVal = event.pageX - canvas.offsetLeft,
+                    yVal = event.pageY - canvas.offsetTop;
+
+                if (yVal > boxYStartCoord &&
+                    xVal > boxXStartCoord &&
+                    yVal < (boxYStartCoord + boxYEndCoord) &&
+                    xVal < (boxXStartCoord + boxXEndCoord)) {
+                    console.log(xVal, yVal);
+                    // let chosenColor = colors[Math.floor(Math.random() * colors.length)];
+                    // let newBall = new Ball(Math.floor(Math.random() * 50) + 1,
+                    //     chosenColor, [xVal, yVal]);
+                    // newBall.draw();
+
+                    //weird but it works.
+                    //no reference to this object so memory will be reclaimed
+                    //during the next garbage collection cycle
+                    new Ball(Math.floor(
+                        Math.random() * 50) + 1,
+                        colors[Math.floor(Math.random() * colors.length)],
+                        [xVal, yVal])
+                        .draw();
+                }
+                else {
+                    console.log(xVal, yVal);
+                    console.log("out of button bounds");
+                }
+
+            };
+
+            var lastPosition = [0, 0];
+
+            //set up outer rectangle
+            context.fillStyle = "aquamarine";
+
+            //shadow for outer rectangle
+            context.shadowBlur = 5;
+            context.shadowOffsetX = 5;
+            context.shadowOffsetY = -5;
+            context.shadowColor = "black";
+            //draw outer rectangle
+            context.fillRect(50, 50, 200, 200);
+
+            //set up font label            
+            context.font = "bold 16pt Comic Sans MS";
+            context.fillStyle = "white";
+            //a little strange
+            //https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/fillText
+            //textAlign is where the drawing boundary is relative to the fillText position
+            context.textAlign = "center";
+            // context.textAlign = "right";
+
+            //set up button rectangle
+            //shadow for button rectangle and outer rectangle text
+            context.shadowBlur = 10;
+            context.shadowOffsetX = 5;
+            context.shadowOffsetY = 5;
+            context.shadowColor = "black";
+
+            console.log("canvas.width / 2: " + canvas.width / 2);
+            context.fillText("Hello, World!", canvas.width / 2, 80);
+
+            //set up and style "button"
+            context.fillStyle = "yellow";
+            //note the specific coords being used
+            context.fillRect(boxXStartCoord, boxYStartCoord, boxXEndCoord, boxYEndCoord);
+            //another text label
+            context.font = "bold 14pt Comic Sans MS";
+            context.fillStyle = "blue";
+            //reset shading for non-button box            
+            context.shadowBlur = 0;
+            context.shadowOffsetX = 0;
+            context.shadowOffsetY = 0;
+            //draw the text
+            context.fillText("I'm a button!", canvas.width / 2, 130);
+
+            document.getElementById("clear").addEventListener("click", redrawMenu);
+
+            function redrawMenu() {
+
+                //note you need to clear things you don't want to be drawn
+                //on the next canvas update
+                // context.clearRect(0, 0, canvas.width, canvas.height);
+
+                //set up outer rectangle
+                context.fillStyle = "aquamarine";
+
+                //shadow for outer rectangle
+                context.shadowBlur = 5;
+                context.shadowOffsetX = 5;
+                context.shadowOffsetY = -5;
+                context.shadowColor = "black";
+                //draw outer rectangle
+                context.fillRect(50, 50, 200, 200);
+
+                //set up font label            
+                context.font = "bold 16pt Comic Sans MS";
+                context.fillStyle = "white";
+                context.textAlign = "center";
+
+                //set up button rectangle
+                //shadow for button rectangle and outer rectangle text
+                context.shadowBlur = 10;
+                context.shadowOffsetX = 5;
+                context.shadowOffsetY = 5;
+                context.shadowColor = "black";
+
+                context.fillText("Hello, World!", canvas.width / 2, 80);
+
+                //set up and style "button"
+                context.fillStyle = "yellow";
+                //note the specific coords being used
+                context.fillRect(boxXStartCoord, boxYStartCoord, boxXEndCoord, boxYEndCoord);
+                //another text label
+                context.font = "bold 14pt Comic Sans MS";
+                context.fillStyle = "blue";
+                //reset shading for non-button box            
+                context.shadowBlur = 0;
+                context.shadowOffsetX = 0;
+                context.shadowOffsetY = 0;
+                //draw the text
+                context.fillText("I'm a button!", canvas.width / 2, 130);
+            };
+
+        };//end of onload
+    </script>
+</head>
+
+<body>
+    <canvas id="myCanvas" width="300" height="300"></canvas>
+    <button id="clear">Clear</button>
+    <a href="../../index.html">Back to the participation index</a>
+</body>
+
+</html>
