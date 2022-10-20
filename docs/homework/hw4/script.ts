@@ -1,7 +1,7 @@
 window.onload = function() {
     alert("Screw JavaScript")
     alert("All my homies hate JavaScript")
-    alert("This alert was made by TypeScript gang")
+    alert("This alert was made by the TypeScript gang")
 }
 
 // Add an event listener for the DOMContentLoaded event
