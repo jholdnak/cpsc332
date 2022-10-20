@@ -10,6 +10,7 @@ window.addEventListener("DOMContentLoaded", domLoaded);
 function domLoaded() {
     const startButton = document.getElementById('start-btn')
     const nextButton = document.getElementById('next-btn')
+    const optionsContainerElement = document.getElementById('options')
     const questionContainerElement = document.getElementById('question-container')
     const questionElement = document.getElementById('question')
     const answerButtonsElement = document.getElementById('answer-buttons')
@@ -25,6 +26,7 @@ function domLoaded() {
 
     function startGame() {
         startButton.classList.add('hide')
+        optionsContainerElement.style.display = 'none'
         shuffledQuestions = questions.sort(() => Math.random() - .5)
         currentQuestionIndex = 0
         questionContainerElement.classList.remove('hide')
