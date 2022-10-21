@@ -14,6 +14,10 @@ function domLoaded() {
     const questionContainerElement = document.getElementById('question-container')
     const questionElement = document.getElementById('question')
     const answerButtonsElement = document.getElementById('answer-buttons')
+    // Options
+    const shuffleCardsOption = document.getElementById('shuffleCards')
+    const timedSessionOption = document.getElementById('timedSession')
+    const removeCorrectFromDeckOption = document.getElementById('removeCorrectFromDeck')
 
     let shuffledQuestions, currentQuestionIndex
     //using the domLoaded function because the buttons need to be rendered before we can
@@ -31,6 +35,9 @@ function domLoaded() {
         currentQuestionIndex = 0
         questionContainerElement.classList.remove('hide')
         setNextQuestion()
+
+        // The part I'm working on
+        if (shuffleCardsOption.checked)
     }
 
     function setNextQuestion() {
