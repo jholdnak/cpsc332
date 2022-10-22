@@ -15,15 +15,18 @@
     <script defer src="script.ts"></script>
 </head>
 <body>
+    <div id="additional-info-container" class="hide">
+        <div id="additional-info"></div>
+    </div>
     <div class="container">
-        <div id="additional-info-container" class="hide"></div>
+        <div id="additional-info-container" class="hide">
+            <div id="additional-info"></div>
+        </div>
         <div id="question-container" class="hide">
             <div id="question">Question</div>
             <div id="answer-buttons" class="btn-grid">
-                <button class="btn">Answer 1</button>
-                <button class="btn">Answer 2</button>
-                <button class="btn">Answer 3</button>
-                <button class="btn">Answer 4</button>
+                <button class="btn">Correct</button>
+                <button class="btn">Incorrect</button>
             </div>
         </div>
         <div id="options">
@@ -31,14 +34,18 @@
             <label for="shuffleCards">Shuffle Cards: </label>
             <input type="checkbox" id="shuffleCards" name="shuffleCards" checked>
             <label for="timedSession">Timed session: </label>
-            <input type="checkbox" id=timedSession name="timedSession">
+            <input type="checkbox" id="timedSession" name="timedSession">
             <br>
             <label for="removeCorrectFromDeck">Remove Correct from Deck: </label>
             <input type="checkbox" id="removeCorrectFromDeck" name="removeCorrectFromDeck">
         </div>
         <div class="controls">
             <button id="start-btn" class="start-btn btn">Start</button>
+            <button id="previous-btn" class="previous-btn btn hide">Previous</button>
             <button id="next-btn" class="next-btn btn hide">Next</button>
+        </div>
+        <div id="elapsedTime" class="hide">
+            <p><span id="minute"></span>m <span id="second"></span>s <span id="ms"></span>ms</p>
         </div>
     </div>
 </body>

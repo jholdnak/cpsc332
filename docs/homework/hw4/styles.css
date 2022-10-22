@@ -68,7 +68,7 @@ body.wrong {
     --hue: var(--hue-wrong);
 }
 
-.start-btn, .next-btn {
+.start-btn, .next-btn, .previous-btn {
     font-size: 1.5rem;
     font-weight: bold;
     padding: 10px 20px;
@@ -86,6 +86,11 @@ body.wrong {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+#additional-info-container {
+    border-style: 2px dashed;
+    border-radius: 3px
 }
 
 #label {
