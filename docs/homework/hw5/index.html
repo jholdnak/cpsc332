@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homework 5</title>
+    <style>
+        * {
+            font-family: Helvetica;
+            padding: 0;
+            margin: 0;
+        }
+        canvas {
+            background: #1b1b1b;
+            display: block;
+            margin: 0 auto;
+        }
+        body {
+            background: #1b1b1b;
+        }
+        fieldset {
+            border: 3px dashed white;
+            display: block;
+            margin: 0 auto;
+            border-radius: 3px;
+            width: 480px;
+            /*height: 320px;*/
+            text-align: center;
+            /*align-items: center;*/
+        }
+    </style>
+<!--    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>-->
+    <script src="script.ts"></script>
+</head>
+<body>
+    <canvas id="myCanvas" width="480" height="320">
+    </canvas>
+    <fieldset id="optionsContainer">
+        <legend style="color: white; background: #1b1b1b;">OPTIONS</legend>
+        <button id="togglePauseGameButton" style="width: 95%;">Toggle Pause Game</button>
+        <p>
+            <label for="speedSlider" style="color: white; background: #1b1b1b;">Game Speed: <span id="speedDisplay" style="font-weight: bold">1</span></label>
+            <input type="range" min="0.5" max="4" value="1" id="speedSlider" step=".05">
+        </p>
+        <p>
+            <button id="resetButton">New Game (Reset)</button>
+            <button id="continueButton">Continue Playing</button>
+        </p>
+        <button id="reloadWindowButton" style="width: 95%;" onclick="document.location.reload()">Reload Window</button>
+    </fieldset>
+</body>
+</html>
