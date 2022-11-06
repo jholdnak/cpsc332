@@ -75,10 +75,10 @@ window.onload = function () {
                 var b = bricks[c][r];
                 if (b.status == 1) {
                     if (x > b.x && x < b.x + brickWidth && y > b.y && y < b.y + brickHeight) {
+                        playSound();
                         dy = -dy;
                         b.status = 0;
                         score++;
-                        playSound();
                         if (score == brickRowCount * brickColumnCount) {
                             //TODO: draw message on the canvas
                             alert("You made it this far. JavaScript sucks. TypeScript is better.");
@@ -337,7 +337,7 @@ window.onload = function () {
     };
 
     function playSound() {
-        var audio = new Audio('sound.mp3');
+        var audio = new Audio('sound.wav');
         audio.play();
     }
 
