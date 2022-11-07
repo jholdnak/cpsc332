@@ -233,6 +233,21 @@ window.onload = function () {
         //event listener for clicking start
         //need to add it here because the menu should be able to come back after
         //we remove the it later
+        var logo = new Image();
+        logo.src = "logo.png";
+        logo.onload = function(){
+            ctx.drawImage(logo, 0, 0);
+        }
+        //set up and style "button"
+        ctx.fillStyle = color1;
+        //note the specific coords being used
+        ctx.fillRect(canvas.width-290,150,115,40);
+        //another text label
+        ctx.font = "bold 14pt Helvetica";
+        ctx.fillStyle = "white";
+        //draw the text
+        ctx.fillText("Start",canvas.width-254,177,115);
+        canvas.addEventListener("click", startGameClick)
     }
 
     //function used to set shadow properties
@@ -256,7 +271,17 @@ window.onload = function () {
     //i.e., did the user click in the bounds of where the button is drawn
     //if so, we want to trigger the draw(); function to start our game
     function startGameClick(event) {
+        // ,150,115,40
+        var xVal = event.pageX - canvas.offsetLeft,
+            yVal = event.pageY - canvas.offsetTop;
 
+        if (yVal > 150 &&
+            xVal > canvas.width-290 &&
+            yVal < (150 + 110) &&
+            xVal < canvas.width-290 + 305) {
+                canvas.removeEventListener("click", startGameClick, false);
+                draw();
+        }
     };
 
     //function to handle game speed adjustments when we move our slider
@@ -336,13 +361,25 @@ window.onload = function () {
         gameStateStatus = true;
     };
 
+    function introMusic() {
+        var audio = new Audio("intro.wav");
+        audio.play();
+    }
+
     function playSound() {
-        var audio = new Audio('sound.wav');
+        var audio, randInt = Math.floor(Math.random()*3) + 1;
+        if (randInt == 1)
+            audio = new Audio('sound1.wav')
+        else if (randInt == 2)
+            audio = new Audio('sound2.wav');
+        else if (randInt == 3)
+            audio = new Audio('sound3.wav')
         audio.play();
     }
 
     //draw the menu.
     //we don't want to immediately draw... only when we click start game
-    draw();
+    introMusic();
+    drawMenu();
 
 };//end window.onload function
