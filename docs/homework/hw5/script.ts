@@ -367,13 +367,15 @@ window.onload = function () {
     }
 
     function playSound() {
-        var audio, randInt = Math.floor(Math.random()*3) + 1;
+        var audio, randInt = Math.floor(Math.random()*4) + 1;
         if (randInt == 1)
             audio = new Audio('sound1.wav')
         else if (randInt == 2)
             audio = new Audio('sound2.wav');
         else if (randInt == 3)
             audio = new Audio('sound3.wav')
+        else if (randInt == 4)
+            audio = new Audio('sound4.wav')
         audio.play();
     }
 
