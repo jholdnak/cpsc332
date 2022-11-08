@@ -40,7 +40,9 @@ window.onload = function () {
     document.addEventListener("mousemove", mouseMoveHandler, false);
     document.getElementById("togglePauseGameButton").addEventListener("click", togglePauseGame, false)
     document.getElementById("reloadWindowButton").addEventListener("click", document.location.reload, false)
-    document.getElementById("continuePlayingButton").addEventListener("click", startNewGame(3), false)
+    document.getElementById("continuePlayingButton").addEventListener("click", function() {
+        startNewGame(3);
+    }, false)
     document.getElementById("speedSlider").addEventListener("mousemove", adjustGameSpeed, false)
     document.getElementById("resetButton").addEventListener("click", function() {
         resetBoard(3);
@@ -326,6 +328,7 @@ window.onload = function () {
     function startNewGame(resetScore) {
         cancelAnimationFrame(gameState)
         gameStateStatus = false;
+        canvas.removeEventListener("click", startNewGame, false);
         // canvas = document.getElementById("myCanvas");
         // ctx = canvas.getContext("2d");
         // ballRadius = 10;
@@ -348,6 +351,8 @@ window.onload = function () {
         brickOffsetLeft = 30;
         score = resetScore;
         lives = 3;
+        gameStateStatus = true;
+        gameState = draw();
     };
 
     //function to reset the board and continue playing (accumulate high score)
