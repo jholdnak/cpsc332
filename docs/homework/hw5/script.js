@@ -40,7 +40,7 @@ window.onload = function () {
     document.addEventListener("mousemove", mouseMoveHandler, false);
     document.getElementById("togglePauseGameButton").addEventListener("click", togglePauseGame, false)
     document.getElementById("reloadWindowButton").addEventListener("click", document.location.reload, false)
-    document.getElementById("continuePlayingButton").addEventListener("click", function() {
+    document.getElementById("continueButton").addEventListener("click", function() {
         startNewGame(3);
     }, false)
     document.getElementById("speedSlider").addEventListener("mousemove", adjustGameSpeed, false)
