@@ -39,6 +39,8 @@ window.onload = function () {
     document.addEventListener("keyup", keyUpHandler, false);
     document.addEventListener("mousemove", mouseMoveHandler, false);
     document.getElementById("togglePauseGameButton").addEventListener("click", togglePauseGame, false)
+    document.getElementById("reloadWindowButton").addEventListener("click", document.location.reload, false)
+    document.getElementById("continuePlayingButton").addEventListener("click", startNewGame(3), false)
     document.getElementById("speedSlider").addEventListener("mousemove", adjustGameSpeed, false)
     document.getElementById("resetButton").addEventListener("click", function() {
         resetBoard(3);
@@ -81,7 +83,7 @@ window.onload = function () {
                         score++;
                         if (score == brickRowCount * brickColumnCount) {
                             //TODO: draw message on the canvas
-                            alert("You made it this far. JavaScript sucks. TypeScript is better.");
+                            checkWinState();
                             //TODO: pause game instead of reloading
                             resetBoard(3);
                         }
@@ -160,11 +162,12 @@ window.onload = function () {
                 lives--;
                 if (lives <= 0) {
                     //TODO: draw message on the canvas
-                    alert("GAME OVER");
+                    var image = new Image();
+                    image.src = "https://cdn141.picsart.com/255323250012212.png";
+                    image.onload = function(){
+                        ctx.drawImage(image, 0, 0);
+                    }
                     //TODO: pause game instead of reloading
-                    // resetBoard(3);
-                    canvas.stop()
-                    canvas.clear();
                 }
                 else {
                     x = canvas.width / 2;
@@ -264,6 +267,7 @@ window.onload = function () {
     function clearMenu() {
         //remove event listener for menu,
         //we don't want to trigger the start game click event during a game
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
     }
 
     //function to start the game
@@ -280,6 +284,7 @@ window.onload = function () {
             yVal < (150 + 110) &&
             xVal < canvas.width-290 + 305) {
                 canvas.removeEventListener("click", startGameClick, false);
+                clearMenu();
                 draw();
         }
     };
@@ -310,12 +315,39 @@ window.onload = function () {
     //if we win, we want to accumulate high score and draw a message to the canvas
     //if we lose, we want to draw a losing message to the canvas
     function checkWinState() {
-
+        var image = new Image();
+        image.src = "https://pixelartmaker-data-78746291193.nyc3.digitaloceanspaces.com/image/681e156ae971bd4.png";
+        image.onload = function(){
+            ctx.drawImage(image, 0, 0);
+        }
     };
 
     //function to clear the board state and start a new game (no high score accumulation)
     function startNewGame(resetScore) {
-
+        cancelAnimationFrame(gameState)
+        gameStateStatus = false;
+        // canvas = document.getElementById("myCanvas");
+        // ctx = canvas.getContext("2d");
+        // ballRadius = 10;
+        // speed = 1;
+        x = canvas.width / 2;
+        y = canvas.height - 30;
+        dx = 2;
+        dy = -2;
+        // paddleHeight = 10;
+        // paddleWidth = 75;
+        // paddleX = (canvas.width - paddleWidth) / 2;
+        rightPressed = false;
+        leftPressed = false;
+        brickRowCount = 5;
+        brickColumnCount = 3;
+        brickWidth = 75;
+        brickHeight = 20;
+        brickPadding = 10;
+        brickOffsetTop = 30;
+        brickOffsetLeft = 30;
+        score = resetScore;
+        lives = 3;
     };
 
     //function to reset the board and continue playing (accumulate high score)
