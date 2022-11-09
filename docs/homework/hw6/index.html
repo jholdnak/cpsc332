@@ -9,8 +9,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HW6 - JQuery</title>
     <style>
+        body {
+            font-family: "Helvetica";
+        }
         .timer-background {
             background-color: white;
+        }
+        .button {
+            align-items: center;
+            border: 2px solid #292929;
+            background-color: #ffa31a;
+            font-weight: bold;
         }
     </style>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
@@ -72,6 +81,10 @@
             }
 
             $("p").attr("class", "timer-background")
+
+            buttonStart.attr("class", "button")
+            buttonStop.attr("class", "button")
+            buttonReset.attr("class", "button")
         });
     </script>
 </head>
