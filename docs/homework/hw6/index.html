@@ -10,7 +10,7 @@
     <title>HW6 - JQuery</title>
     <style>
         .timer-background {
-            background-color: #1b1b1b;
+            background-color: white;
         }
     </style>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
@@ -26,15 +26,19 @@
             var interval;
 
             buttonStart.click(function () {
+                $(".timer-background").css("background-color", "#ffa31a");
                 clearInterval(interval);
                 interval = setInterval(startTimer, 10);
             });
 
             buttonStop.click(function () {
+                if (seconds != 00 || tens != 00)
+                    $(".timer-background").css("background-color", "#808080");
                 clearInterval(interval);
             });
 
             buttonReset.click(function () {
+                $(".timer-background").css("background-color", "white");
                 clearInterval(interval);
                 tens = "00";
                 seconds = "00";
