@@ -50,6 +50,7 @@
                     $(".timer-background").css("background-color", "#808080");
                 clearInterval(interval);
                 clearInterval(interval2);
+                $(".timer-background").css("opacity", "1");
             });
 
             buttonReset.click(function () {
@@ -60,6 +61,7 @@
                 seconds = "00";
                 appendTens.html(tens);
                 appendSeconds.html(seconds);
+                $(".timer-background").css("opacity", "1");
             });
 
             function startTimer() {
@@ -95,7 +97,7 @@
                 // if (tens % 2 == 2)
                 //     $(".timer-background").css("opacity", ".8");
                 if (!brightenUp && opacity == 1 || opacity > .8) {
-                    opacity -= .01
+                    opacity -= (.01).toFixed(2);
                     $(".timer-background").css("opacity", opacity);
                 }
                 else if (opacity == .8) {
@@ -103,7 +105,7 @@
                     console.log("brightenUp is now true");
                 }
                 else if (brightenUp && opacity == .8 || opacity < 1) {
-                    opacity += .01;
+                    opacity += (.01).toFixed(2);
                     $(".timer-background").css("opacity", opacity);
                 }
                 else if (opacity == 1) {
