@@ -8,6 +8,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HW6 - JQuery</title>
+    <style>
+        .timer-background {
+            background-color: #1b1b1b;
+        }
+    </style>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script>
         $("document").ready(function () {
@@ -61,6 +66,9 @@
                     appendSeconds.html(seconds);
                 }
             }
+
+            $("p").attr("id", "timer")
+            $("p").attr("class", "timer-background")
         });
     </script>
 </head>
