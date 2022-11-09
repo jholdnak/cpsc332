@@ -11,9 +11,11 @@
     <style>
         body {
             font-family: "Helvetica";
+            background-color: #1b1b1b;
         }
         .timer-background {
             background-color: white;
+            opacity: 1;
         }
         .button {
             align-items: center;
@@ -32,23 +34,28 @@
             var buttonStart = $("#button-start");
             var buttonStop = $("#button-stop");
             var buttonReset = $("#button-reset");
-            var interval;
+            var interval, interval2;
+            var opacity = 1.00, brightenUp = false;
 
             buttonStart.click(function () {
                 $(".timer-background").css("background-color", "#ffa31a");
                 clearInterval(interval);
+                clearInterval(interval2);
                 interval = setInterval(startTimer, 10);
+                interval2 = setInterval(animateTimerBackground, 10);
             });
 
             buttonStop.click(function () {
                 if (seconds != 00 || tens != 00)
                     $(".timer-background").css("background-color", "#808080");
                 clearInterval(interval);
+                clearInterval(interval2);
             });
 
             buttonReset.click(function () {
                 $(".timer-background").css("background-color", "white");
                 clearInterval(interval);
+                clearInterval(interval2);
                 tens = "00";
                 seconds = "00";
                 appendTens.html(tens);
@@ -80,6 +87,32 @@
                 }
             }
 
+            function animateTimerBackground() {
+                // if (tens % 2 == 0)
+                //     $(".timer-background").css("opacity", "1");
+                // if (tens % 2 == 1)
+                //     $(".timer-background").css("opacity", ".9");
+                // if (tens % 2 == 2)
+                //     $(".timer-background").css("opacity", ".8");
+                if (!brightenUp && opacity == 1 || opacity > .8) {
+                    opacity -= .01
+                    $(".timer-background").css("opacity", opacity);
+                }
+                else if (opacity == .8) {
+                    brightenUp = true;
+                    console.log("brightenUp is now true");
+                }
+                else if (brightenUp && opacity == .8 || opacity < 1) {
+                    opacity += .01;
+                    $(".timer-background").css("opacity", opacity);
+                }
+                else if (opacity == 1) {
+                    brightenUp = false;
+                    console.log("brightenUp is now false");
+                }
+                console.log(opacity)
+            }
+
             $("p").attr("class", "timer-background")
 
             buttonStart.attr("class", "button")
@@ -90,8 +123,7 @@
 </head>
 <body>
     <div class="wrapper">
-        <h1>Stopwatch</h1>
-        <h2>Vanilla JavaScript Stopwatch</h2>
+        <h1>JQuery Stopwatch</h1>
         <p id="timer"><span id="seconds">00</span>:<span id="tens">00</span></p>
         <button id="button-start">Start</button>
         <button id="button-stop">Stop</button>
