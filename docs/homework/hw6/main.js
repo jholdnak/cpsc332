@@ -8,7 +8,6 @@ $("document").ready(function () {
     var $buttonStop = $("#button-stop");
     var $buttonReset = $("#button-reset");
     var interval, interval2;
-    var opacity = 1.00, brightenUp = false;
 
     $buttonStart.click(function () {
         playSound(1);
